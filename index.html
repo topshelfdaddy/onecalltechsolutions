@@ -11,7 +11,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    /* Header and Logo Fix */
+    /* Adjust Header Size */
     header {
       height: auto;
       display: flex;
@@ -22,11 +22,10 @@
     }
 
     .logo {
-      height: 60px; /* Set fixed size for logo */
-      width: 60px;
+      height: 50px; /* Reduced size of logo */
+      width: 50px;
       border-radius: 50%;
       object-fit: cover;
-      animation: bounce 1s ease-in-out infinite;
     }
 
     @keyframes bounce {
@@ -65,7 +64,6 @@
       scroll-behavior: smooth;
     }
 
-    /* Service and Pricing Section */
     .service-description {
       font-size: 1.25rem;
     }
@@ -96,7 +94,7 @@
 
       .logo {
         height: 50px;
-        width: 50px; /* Adjusted logo size for smaller screens */
+        width: 50px;
       }
     }
   </style>
@@ -108,12 +106,52 @@
       <a href="#services">Services</a>
       <a href="#pricing">Pricing</a>
       <a href="#about">About</a>
-      <a href="#contact" class="scroll-link">Contact</a> <!-- Fix for Contact link -->
+      <a href="#contact" class="scroll-link">Contact</a> <!-- Link to contact section -->
       <a href="#booking" id="bookNowBtn">Book Now</a>
     </div>
   </header>
 
-  <!-- Other sections remain unchanged... -->
+  <!-- Hero Section -->
+  <section class="relative py-20 text-center text-white">
+    <img src="images/customer_service.jpg" alt="Friendly Customer Service" class="absolute inset-0 w-full h-full object-cover opacity-40 scale-110" />
+    <div class="relative container mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-4" style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);">
+        Smart, Reliable Tech Installations
+      </h1>
+      <p class="text-lg" style="text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);">
+        Serving homes and businesses with one call tech solutions—done right the first time.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold text-center mb-8">Our Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+        <div class="px-4 service-card">
+          <img src="images/tv_mounting.jpg" alt="TV Mounting" class="mx-auto mb-2 rounded">
+          <h3 class="text-xl font-bold mb-2">TV Mounting</h3>
+          <p class="service-description">Clean, secure mounting for any room. We specialize in picture frame mounts, full-motion arms, and low-profile wall installs with integrated cable management and device setup.</p>
+        </div>
+        <div class="px-4 service-card">
+          <img src="images/network_wiring.jpg" alt="Structured Network Wiring" class="mx-auto mb-2 rounded">
+          <h3 class="text-xl font-bold mb-2">Structured Network Wiring</h3>
+          <p class="service-description">Professional-grade Ethernet installation for fast, reliable networking. Ideal for smart homes, offices, and gaming setups.</p>
+        </div>
+        <div class="px-4 service-card">
+          <img src="images/camera_systems.jpg" alt="Camera Systems" class="mx-auto mb-2 rounded">
+          <h3 class="text-xl font-bold mb-2">Camera Systems</h3>
+          <p class="service-description">Professional security camera installation with mobile access, motion alerts, and high-definition video.</p>
+        </div>
+        <div class="px-4 service-card">
+          <img src="images/home_automation.avif" alt="Home Automation" class="mx-auto mb-2 rounded">
+          <h3 class="text-xl font-bold mb-2">Home Automation</h3>
+          <p class="service-description">Smart lighting, thermostats, doorbells, locks, and voice assistants. We make your home smarter and more secure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Contact Section -->
   <section id="contact" class="bg-gray-50 py-16">
@@ -142,67 +180,7 @@
     </div>
   </section>
 
-  <!-- Booking Modal -->
-  <div id="bookingModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2 class="text-2xl font-semibold mb-4">Book Your Service</h2>
-      <form action="https://formspree.io/f/xzzrezvy" method="POST">
-        <div class="mb-4">
-          <label for="service" class="block text-lg font-semibold">Select Service</label>
-          <select name="service" id="service" class="w-full px-4 py-2 mt-2 border border-gray-300 rounded">
-            <option value="TV Mounting">TV Mounting</option>
-            <option value="Structured Network Wiring">Structured Network Wiring</option>
-            <option value="Camera Systems">Camera Systems</option>
-            <option value="Home Automation">Home Automation</option>
-          </select>
-        </div>
-        <div class="mb-4">
-          <label for="timeSlot" class="block text-lg font-semibold">Select Time Slot</label>
-          <select name="timeSlot" id="timeSlot" class="w-full px-4 py-2 mt-2 border border-gray-300 rounded">
-            <option value="9:00 AM">9:00 AM</option>
-            <option value="11:00 AM">11:00 AM</option>
-            <option value="2:00 PM">2:00 PM</option>
-            <option value="4:00 PM">4:00 PM</option>
-          </select>
-        </div>
-        <div class="mb-4">
-          <label for="name" class="block text-lg font-semibold">Your Name</label>
-          <input type="text" name="name" id="name" class="w-full px-4 py-2 mt-2 border border-gray-300 rounded" required />
-        </div>
-        <div class="mb-4">
-          <label for="email" class="block text-lg font-semibold">Your Email</label>
-          <input type="email" name="email" id="email" class="w-full px-4 py-2 mt-2 border border-gray-300 rounded" required />
-        </div>
-        <div class="mb-4">
-          <label for="phone" class="block text-lg font-semibold">Phone Number</label>
-          <input type="text" name="phone" id="phone" class="w-full px-4 py-2 mt-2 border border-gray-300 rounded" required />
-        </div>
-        <button type="submit" class="bg-blue-600 text-white py-2 px-6 rounded">Book Now</button>
-      </form>
-    </div>
-  </div>
-
   <script>
-    // Modal logic
-    var modal = document.getElementById("bookingModal");
-    var btn = document.getElementById("bookNowBtn");
-    var span = document.getElementsByClassName("close")[0];
-
-    btn.onclick = function() {
-      modal.style.display = "block";
-    }
-
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-
     // Smooth Scroll for Contact
     document.querySelector('.scroll-link').addEventListener('click', function(e) {
       e.preventDefault();
