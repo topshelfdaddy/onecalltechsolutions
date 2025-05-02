@@ -129,7 +129,7 @@
       <a href="#services">Services</a>
       <a href="#pricing">Pricing</a>
       <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="javascript:void(0);" id="contactButton">Contact</a> <!-- Contact Button -->
       <a href="javascript:void(0);" id="bookNowButton">Book Now</a> <!-- Book Now button -->
     </div>
   </header>
@@ -155,7 +155,27 @@
 
         <button type="submit" class="bg-blue-500 text-white p-2 rounded mt-4">Submit Booking</button>
       </form>
-      <button id="closeModal" class="mt-4 text-blue-500">Close</button>
+      <button id="closeBookingModal" class="mt-4 text-blue-500">Close</button>
+    </div>
+  </div>
+
+  <!-- Modal for Contact Form -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <h2 class="text-2xl font-bold mb-4">Contact Us</h2>
+      <form action="https://formspree.io/f/mrbqpblb" method="POST">
+        <label for="name" class="block mb-2">Name</label>
+        <input type="text" id="name" name="name" class="block w-full mb-4 p-2 rounded border" required>
+
+        <label for="email" class="block mb-2">Email</label>
+        <input type="email" id="email" name="email" class="block w-full mb-4 p-2 rounded border" required>
+
+        <label for="message" class="block mb-2">Message</label>
+        <textarea id="message" name="message" rows="4" class="block w-full mb-4 p-2 rounded border" required></textarea>
+
+        <button type="submit" class="bg-blue-500 text-white p-2 rounded mt-4">Send Message</button>
+      </form>
+      <button id="closeContactModal" class="mt-4 text-blue-500">Close</button>
     </div>
   </div>
 
@@ -187,61 +207,42 @@
     </div>
   </section>
 
-  <section id="pricing" class="bg-gray-100 py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-semibold text-center mb-8">Pricing</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
-        <div class="bg-white p-6 rounded shadow">
-          <h3 class="text-xl font-bold">TV Mounting</h3>
-          <p class="text-lg">Starting at $125 (typically 1 hour install)</p>
-        </div>
-        <div class="bg-white p-6 rounded shadow">
-          <h3 class="text-xl font-bold">Structured Network Wiring</h3>
-          <p class="text-lg">Starting at $75 per run (per wall/ceiling drop)</p>
-        </div>
-        <div class="bg-white p-6 rounded shadow">
-          <h3 class="text-xl font-bold">Camera Systems</h3>
-          <p class="text-lg">Install Packages from $399 (2–4 hours)</p>
-        </div>
-        <div class="bg-white p-6 rounded shadow">
-          <h3 class="text-xl font-bold">Home Automation</h3>
-          <p class="text-lg">Quote based on setup (custom estimate)</p>
-        </div>
-      </div>
-      <p class="text-center mt-6 text-gray-600">All pricing includes professional setup and satisfaction guarantee. Custom quotes available.</p>
-    </div>
-  </section>
-
-  <section id="about" class="bg-gray-50 py-16">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl font-semibold mb-4">About OneCall</h2>
-      <p class="text-lg max-w-2xl mx-auto">OneCall Tech Solutions is your trusted local partner for smart home and business technology installations. With years of hands-on experience, we take pride in doing the job right the first time. Whether you need a sleek TV setup, advanced security, or a fully connected home, we're just one call away.</p>
-      <ul class="list-disc text-left max-w-xl mx-auto mt-4 text-gray-700">
-        <li>Fast and reliable service</li>
-        <li>Friendly and professional technicians</li>
-        <li>Transparent pricing with no surprises</li>
-        <li>Custom solutions tailored to your space</li>
-      </ul>
-    </div>
-  </section>
-
   <script>
-    // Modal functionality
-    const modal = document.getElementById("bookingModal");
+    // Modal functionality for booking
+    const bookingModal = document.getElementById("bookingModal");
     const bookNowButton = document.getElementById("bookNowButton");
-    const closeModalButton = document.getElementById("closeModal");
+    const closeBookingModalButton = document.getElementById("closeBookingModal");
 
     bookNowButton.onclick = function() {
-      modal.style.display = "block";
+      bookingModal.style.display = "block";
     }
 
-    closeModalButton.onclick = function() {
-      modal.style.display = "none";
+    closeBookingModalButton.onclick = function() {
+      bookingModal.style.display = "none";
     }
 
     window.onclick = function(event) {
-      if (event.target === modal) {
-        modal.style.display = "none";
+      if (event.target === bookingModal) {
+        bookingModal.style.display = "none";
+      }
+    }
+
+    // Modal functionality for contact
+    const contactModal = document.getElementById("contactModal");
+    const contactButton = document.getElementById("contactButton");
+    const closeContactModalButton = document.getElementById("closeContactModal");
+
+    contactButton.onclick = function() {
+      contactModal.style.display = "block";
+    }
+
+    closeContactModalButton.onclick = function() {
+      contactModal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target === contactModal) {
+        contactModal.style.display = "none";
       }
     }
   </script>
