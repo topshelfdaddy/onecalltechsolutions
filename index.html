@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <style>
+    /* Your existing styles */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
@@ -69,6 +70,28 @@
       box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     }
 
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 5px;
+      width: 60%;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Add responsiveness */
     @media (max-width: 768px) {
       .nav-links {
         flex-direction: column;
@@ -91,10 +114,15 @@
         height: 70px;
         width: 70px;
       }
+
+      .modal-content {
+        width: 80%;
+      }
     }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
+  <!-- Header Section -->
   <header class="bg-white shadow-md flex flex-col md:flex-row items-center justify-between px-6 py-4">
     <img src="images/logo.png" alt="OneCall Tech Solutions Logo" class="logo" loading="lazy">
     <div class="nav-links mt-2 md:mt-0">
@@ -102,21 +130,34 @@
       <a href="#pricing">Pricing</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="#booking">Book Now</a>
+      <a href="javascript:void(0);" id="bookNowButton">Book Now</a> <!-- Book Now button -->
     </div>
   </header>
 
-  <section class="relative py-20 text-center text-white">
-    <img src="images/customer_service.jpg" alt="Friendly Customer Service" class="absolute inset-0 w-full h-full object-cover opacity-40 scale-110" />
-    <div class="relative container mx-auto px-4">
-      <h1 class="text-4xl font-bold mb-4" style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);">
-        Smart, Reliable Tech Installations
-      </h1>
-      <p class="text-lg" style="text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);">
-        Serving homes and businesses with one call tech solutions—done right the first time.
-      </p>
+  <!-- Modal for Booking -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+      <h2 class="text-2xl font-bold mb-4">Book Your Service</h2>
+      <form action="https://formspree.io/f/xzzrezvy" method="POST">
+        <label for="service" class="block mb-2">Choose a Service</label>
+        <select id="service" name="service" class="block w-full mb-4 p-2 rounded border">
+          <option value="TV Mounting">TV Mounting</option>
+          <option value="Structured Network Wiring">Structured Network Wiring</option>
+          <option value="Camera Systems">Camera Systems</option>
+          <option value="Home Automation">Home Automation</option>
+        </select>
+
+        <label for="date" class="block mb-2">Select a Date</label>
+        <input type="date" id="date" name="date" class="block w-full mb-4 p-2 rounded border" required>
+
+        <label for="time" class="block mb-2">Select a Time</label>
+        <input type="time" id="time" name="time" class="block w-full mb-4 p-2 rounded border" required>
+
+        <button type="submit" class="bg-blue-500 text-white p-2 rounded mt-4">Submit Booking</button>
+      </form>
+      <button id="closeModal" class="mt-4 text-blue-500">Close</button>
     </div>
-  </section>
+  </div>
 
   <section id="services" class="py-16">
     <div class="container mx-auto px-4">
@@ -184,24 +225,25 @@
     </div>
   </section>
 
-  <!-- Contact Form -->
-  <section id="contact" class="bg-gray-50 py-16">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl font-semibold mb-4">Contact Us</h2>
-      <p class="text-lg mb-6">We'd love to hear from you! Please fill out the form below, or give us a call.</p>
+  <script>
+    // Modal functionality
+    const modal = document.getElementById("bookingModal");
+    const bookNowButton = document.getElementById("bookNowButton");
+    const closeModalButton = document.getElementById("closeModal");
 
-      <!-- Phone Number -->
-      <p class="text-lg mb-6">Call us at <strong>(828) 851-6067</strong></p>
+    bookNowButton.onclick = function() {
+      modal.style.display = "block";
+    }
 
-      <!-- Form -->
-      <form action="https://formspree.io/f/mrbqpblb" method="POST" class="max-w-xl mx-auto">
-        <input type="text" name="name" placeholder="Your Name" required class="w-full px-4 py-2 mb-4 border border-gray-300 rounded">
-        <input type="email" name="email" placeholder="Your Email" required class="w-full px-4 py-2 mb-4 border border-gray-300 rounded">
-        <textarea name="message" placeholder="Your Message" required class="w-full px-4 py-2 mb-4 border border-gray-300 rounded"></textarea>
-        <button type="submit" class="bg-blue-600 text-white py-2 px-6 rounded">Send Message</button>
-      </form>
-    </div>
-  </section>
+    closeModalButton.onclick = function() {
+      modal.style.display = "none";
+    }
 
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>
