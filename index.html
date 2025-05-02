@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OneCall Tech Solutions</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    header {
+      height: auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      height: 87.5px;
+      width: 87.5px;
+      border-radius: 50%;
+      object-fit: cover;
+      animation: bounce 1s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      align-items: center;
+      height: 100%;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1D4ED8;
+      font-weight: 600;
+      transition: color 0.3s;
+      font-size: 1rem;
+      padding: 4px 8px;
+    }
+
+    .nav-links a:hover {
+      color: #2563EB;
+    }
+
+    .service-description {
+      font-size: 1.25rem;
+    }
+
+    .service-card:hover {
+      transform: scale(1.03);
+      transition: transform 0.3s ease;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .service-description {
+        font-size: 1.125rem;
+      }
+
+      .text-4xl {
+        font-size: 2rem;
+      }
+
+      .text-lg {
+        font-size: 1rem;
+      }
+
+      .logo {
+        height: 70px;
+        width: 70px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <header class="bg-white shadow-md flex flex-col md:flex-row items-center justify-between px-6 py-4">
+    <img src="images/logo.png" alt="OneCall Tech Solutions Logo" class="logo" loading="lazy">
+    <div class="nav-links mt-2 md:mt-0">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#booking">Book Now</a>
+    </div>
+  </header>
+
+  <section class="relative py-20 text-center text-white">
+    <img src="images/customer_service.jpg" alt="Friendly Customer Service" class="absolute inset-0 w-full h-full object-cover opacity-40 scale-110" />
+    <div class="relative container mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-4" style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);">
+        Smart, Reliable Tech Installations
+      </h1>
+      <p class="text-lg" style="text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);">
+        Serving homes and businesses with one call tech solutions—done right the first time.
+      </p>
+    </div>
+  </section>
+
+  <section id="services" class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold text-center mb-8">Our Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+        <div class="px-4 service-card">
+          <img src="images/tv_mounting.jpg" alt="TV Mounting" class="mx-auto mb-2 rounded">
+          <h3 class="text-xl font-bold mb-2">TV Mounting</h3>
+          <p class="service-description">Clean, secure mounting for any room. We specialize in picture frame mounts, full-motion arms, and low-profile wall installs with integrated cable management and device setup.</p>
+        </div>
+        <div class="px-4 service-card">
+          <img src="images/network_wiring.jpg" alt="Structured Network Wiring" class="mx-auto mb-2 rounded">
+          <h3 class="text-xl font-bold mb-2">Structured Network Wiring</h3>
+          <p class="service-description">Professional-grade Ethernet installation for fast, reliable networking. Ideal for smart homes, offices, and gaming setups.</p>
+        </div>
+        <div class="px-4 service-card">
+          <img src="images/camera_systems.jpg" alt="Camera Systems" class="mx-auto mb-2 rounded">
+          <h3 class="text-xl font-bold mb-2">Camera Systems</h3>
+          <p class="service-description">Professional security camera installation with mobile access, motion alerts, and high-definition video.</p>
+        </div>
+        <div class="px-4 service-card">
+          <img src="images/home_automation.avif" alt="Home Automation" class="mx-auto mb-2 rounded">
+          <h3 class="text-xl font-bold mb-2">Home Automation</h3>
+          <p class="service-description">Smart lighting, thermostats, doorbells, locks, and voice assistants. We make your home smarter and more secure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="bg-gray-100 py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-semibold text-center mb-8">Pricing</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-bold">TV Mounting</h3>
+          <p class="text-lg">Starting at $125 (typically 1 hour install)</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-bold">Structured Network Wiring</h3>
+          <p class="text-lg">Starting at $75 per run (per wall/ceiling drop)</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-bold">Camera Systems</h3>
+          <p class="text-lg">Install Packages from $399 (2–4 hours)</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-bold">Home Automation</h3>
+          <p class="text-lg">Quote based on setup (custom estimate)</p>
+        </div>
+      </div>
+      <p class="text-center mt-6 text-gray-600">All pricing includes professional setup and satisfaction guarantee. Custom quotes available.</p>
+    </div>
+  </section>
+
+  <section id="about" class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-semibold mb-4">About OneCall</h2>
+      <p class="text-lg max-w-2xl mx-auto">OneCall Tech Solutions is your trusted local partner for smart home and business technology installations. With years of hands-on experience, we take pride in doing the job right the first time. Whether you need a sleek TV setup, advanced security, or a fully connected home, we're just one call away.</p>
+      <ul class="list-disc text-left max-w-xl mx-auto mt-4 text-gray-700">
+        <li>Fast and reliable service</li>
+        <li>Friendly and professional technicians</li>
+        <li>Transparent pricing with no surprises</li>
+        <li>Custom solutions tailored to your space</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>
