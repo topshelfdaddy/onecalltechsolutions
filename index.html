@@ -157,6 +157,27 @@
         font-size: 1rem;
       }
     }
+
+    /* Back to Top Button */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #2563EB;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: opacity 0.3s ease;
+    }
+
+    #backToTop:hover {
+      background-color: #1D4ED8;
+    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -298,6 +319,9 @@
     </div>
   </section>
 
+  <!-- Back to Top Button -->
+  <button id="backToTop" aria-label="Back to Top">↑</button>
+
   <script>
     // Modal functionality for booking
     const bookingModal = document.getElementById("bookingModal");
@@ -336,6 +360,21 @@
         contactModal.style.display = "none";
       }
     }
+
+    // Back to Top Button functionality
+    const backToTopButton = document.getElementById('backToTop');
+    
+    window.onscroll = function() {
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        backToTopButton.style.display = "block";
+      } else {
+        backToTopButton.style.display = "none";
+      }
+    };
+
+    backToTopButton.onclick = function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
   </script>
 </body>
 </html>
