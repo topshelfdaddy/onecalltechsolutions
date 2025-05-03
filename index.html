@@ -97,6 +97,10 @@
       text-align: center; margin-bottom: 0.5rem;
     }
     @media (max-width: 768px) {
+  .mobile-banner {
+    font-size: 0.875rem;
+    padding: 0.5rem;
+  }
       .nav-links { flex-direction: column; gap: 8px; }
       .service-description { font-size: 1.125rem; }
       .text-4xl { font-size: 2rem; }
@@ -110,6 +114,12 @@
 <body class="bg-gray-50 text-gray-800">
 
 <header class="bg-white shadow-md flex flex-col md:flex-row items-center justify-between px-6 py-4">
+  <div class="w-full text-center text-sm font-bold bg-blue-100 text-blue-800 py-2 rounded-md shadow-sm animate-pulse mobile-banner">
+  <svg class="inline-block w-4 h-4 mr-1 text-blue-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 3.5A1.5 1.5 0 013.5 2h13A1.5 1.5 0 0118 3.5v13a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 012 16.5v-13zM4 4v12h12V4H4zm8.707 6.707a1 1 0 00-1.414-1.414L10 10.586 8.707 9.293a1 1 0 10-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z"/>
+  </svg>
+  24/7 Service - Call Us Today!
+</div>
   <div class="flex items-center justify-between w-full md:w-auto">
     <img src="images/logo.png" alt="OneCall Tech Solutions Logo" class="logo" loading="lazy">
     <!-- Hamburger Icon (mobile only) -->
