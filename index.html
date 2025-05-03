@@ -12,164 +12,75 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <style>
     body { font-family: 'Inter', sans-serif; }
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background-color: white;
-      height: auto; display: flex; flex-wrap: wrap;
-      align-items: center; justify-content: space-between;
-      padding: 10px 20px;
-    }
-    .logo {
-      height: 87.5px; width: 87.5px; border-radius: 50%;
-      object-fit: cover; animation: bounce 1s ease-in-out infinite;
-    }
-    @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-    .nav-links {
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  align-items: center;
-  height: 100%;
-}
-    .nav-links a {
-      text-decoration: none; color: #1D4ED8;
-      font-weight: 600; transition: color 0.3s;
-      font-size: 1rem; padding: 4px 8px;
-    }
+    header { position: sticky; top: 0; z-index: 50; background-color: white; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 10px 20px; }
+    .logo { height: 87.5px; width: 87.5px; border-radius: 50%; object-fit: cover; animation: bounce 1s ease-in-out infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 12px; align-items: center; }
+    .nav-links a { text-decoration: none; color: #1D4ED8; font-weight: 600; transition: color 0.3s; font-size: 1rem; padding: 4px 8px; }
     .nav-links a:hover { color: #2563EB; }
-    .modal {
-      display: none; position: fixed; z-index: 50; left: 0; top: 0;
-      width: 100%; height: 100%; overflow: auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      justify-content: center; align-items: center;
-    }
-    .modal-content {
-      background-color: #fff; padding: 2rem; border-radius: 8px;
-      max-width: 500px; width: 90%; margin: auto;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
+    .modal { display: none; position: fixed; z-index: 50; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
+    .modal-content { background-color: #fff; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; margin: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
     .service-description { font-size: 1.25rem; }
-    .service-card:hover {
-      transform: scale(1.03);
-      transition: transform 0.3s ease;
-      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    }
-    .hero-section {
-      position: relative; width: 100%; height: 400px;
-      background-image: url('images/customer_service.jpg');
-      background-size: cover; background-position: center; color: white;
-    }
-    .hero-text {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
-    }
+    .service-card:hover { transform: scale(1.03); transition: transform 0.3s ease; box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+    .hero-section { position: relative; width: 100%; height: 400px; background-image: url('images/customer_service.jpg'); background-size: cover; background-position: center; color: white; }
+    .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; text-shadow: 2px 2px 6px rgba(0,0,0,0.7); }
     .hero-text h1 { font-size: 3rem; font-weight: bold; margin-bottom: 1rem; }
     .hero-text p { font-size: 1.25rem; }
-    .carousel {
-      overflow: hidden; position: relative; width: 100%;
-    }
-    .carousel-track {
-      display: flex; transition: transform 0.5s ease-in-out;
-    }
-    .carousel-item {
-      flex: 0 0 100%; padding: 1.5rem; margin: 0 0.25rem;
-      border-radius: 0.5rem; background-color: #fff;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s, transform 0.3s;
-      cursor: pointer; text-align: center;
-    }
-    .carousel-item.active {
-      background-color: #e5f0ff; transform: scale(1.03); z-index: 10;
-    }
-    .carousel-item h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
-    .carousel-item ul {
-      list-style-type: disc; padding-left: 1rem;
-      margin: 0 auto; max-width: 20rem; text-align: center;
-    }
-    .carousel-item ul li {
-      text-align: center; margin-bottom: 0.5rem;
-    }
-    @media (max-width: 768px) {
-  .mobile-banner {
-    font-size: 0.875rem;
-    padding: 0.5rem;
-  }
-      .nav-links { flex-direction: column; gap: 8px; }
-      .service-description { font-size: 1.125rem; }
-      .text-4xl { font-size: 2rem; }
-      .text-lg { font-size: 1rem; }
-      .logo { height: 70px; width: 70px; }
-      .hero-text h1 { font-size: 2rem; }
-      .hero-text p { font-size: 1rem; }
-    }
   </style>
 </head>
 <body id="top" class="bg-gray-50 text-gray-800">
 
 <header class="bg-white shadow-md flex flex-col md:flex-row items-center justify-between px-6 py-4">
-  
-  <div class="w-full text-center text-sm font-bold bg-blue-100 text-blue-800 py-2 rounded-md shadow-sm animate-pulse mobile-banner mb-2">
-  <svg class="inline-block w-4 h-4 mr-1 text-blue-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-    <path d="M2 3.5A1.5 1.5 0 013.5 2h13A1.5 1.5 0 0118 3.5v13a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 012 16.5v-13zM4 4v12h12V4H4zm8.707 6.707a1 1 0 00-1.414-1.414L10 10.586 8.707 9.293a1 1 0 10-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z"/>
-  </svg>
-  24/7 Service - Call Us Today!
-</div>
-<div class="flex items-center justify-between w-full md:w-auto">
-  <button id="menuToggle" class="md:hidden text-blue-600 text-3xl focus:outline-none block">☰</button>
-  <div class="flex flex-col items-center justify-center text-center w-full md:flex-row md:space-x-4">
-  <a href="#top" class="block">
-    <img src="images/logo.png" alt="OneCall Tech Solutions Logo" class="logo mt-[10px] md:mt-[100px] mx-auto" loading="lazy">
-  </a>
-  <span class="text-blue-800 font-bold italic text-sm md:text-lg mt-2 md:mt-[100px] inline-block bg-blue-50 px-3 py-1 rounded shadow text-center">Jobs done right, the first time.</span>
-</div>
-</div>
-
-  <div id="mobileMenu" class="nav-links hidden md:flex mt-2 md:mt-0 w-full md:w-auto flex-col md:flex-row">
+  <div class="w-full text-center text-sm font-bold bg-blue-100 text-blue-800 py-2 rounded-md shadow-sm animate-pulse mb-2">
+    <svg class="inline-block w-4 h-4 mr-1 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3.5A1.5 1.5 0 013.5 2h13a1.5 1.5 0 011.5 1.5v13a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 012 16.5v-13zM4 4v12h12V4H4z"/></svg>
+    24/7 Service - Call Us Today!
+  </div>
+  <div class="flex items-center justify-between w-full md:w-auto">
+    <button id="menuToggle" class="md:hidden text-blue-600 text-3xl focus:outline-none">☰</button>
+    <div class="flex flex-col md:flex-row items-center text-center w-full md:space-x-4">
+      <a href="#top"><img src="images/logo.png" alt="Logo" class="logo" loading="lazy"></a>
+      <span class="text-blue-800 font-bold italic text-sm md:text-lg mt-2 md:mt-0 bg-blue-50 px-3 py-1 rounded shadow">Jobs done right, the first time.</span>
+    </div>
+  </div>
+  <nav id="mobileMenu" class="hidden md:flex flex-col md:flex-row mt-2 md:mt-0 space-x-4 nav-links">
     <a href="#services">Services</a>
     <a href="#pricing">Pricing</a>
     <a href="#about">About</a>
     <a href="#" id="contactButton">Contact</a>
     <a href="#" id="bookNowButton">Book Now</a>
     <span class="ml-4 font-semibold text-blue-700">Call: <a href="tel:8288516067" class="underline hover:text-blue-900">828-851-6067</a></span>
-  </div>
+  </nav>
 </header>
 
 <section class="hero-section">
   <div class="hero-text">
     <h1>Smart, Reliable Tech Installations</h1>
     <p>Serving Charlotte and surrounding areas in North and South Carolina.</p>
-  
-</div>
+  </div>
 </section>
 
+<!-- Services 2x2 -->
 <section id="services" class="py-16">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-semibold text-center mb-8">Our Services</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
-      <div class="px-4 service-card">
-        <img src="images/tv_mounting.jpg" loading="lazy" alt="TV Mounting" class="mx-auto mb-2 rounded">
+      <div class="px-4 service-card lg:mt-0">
+        <img src="images/tv_mounting.jpg" alt="TV Mounting" class="mx-auto mb-2 rounded" loading="lazy">
         <h3 class="text-xl font-bold mb-2">TV Mounting</h3>
         <p class="service-description">We provide professional TV mounting services for any wall surface including drywall, brick, concrete, or above fireplaces. Our team ensures all wires are neatly concealed, offers installation of soundbars and floating shelves, and sets up smart remotes and connected devices for seamless control.</p>
       </div>
-      <div class="px-4 service-card">
-        <img src="images/network_wiring.jpg" loading="lazy" alt="Structured Network Wiring" class="mx-auto mb-2 rounded">
+      <div class="px-4 service-card lg:mt-10">
+        <img src="images/network_wiring.jpg" alt="Structured Network Wiring" class="mx-auto mb-2 rounded" loading="lazy">
         <h3 class="text-xl font-bold mb-2">Structured Network Wiring</h3>
         <p class="service-description">Our certified techs install Cat5e, Cat6, and coaxial cabling to ensure high-speed, low-latency networks throughout your home or office. We terminate jacks and patch panels, install racks and switches, and perform full network diagnostics to guarantee optimal performance.</p>
       </div>
-      <div class="px-4 service-card">
-        <img src="images/camera_systems.jpg" loading="lazy" alt="Camera Systems" class="mx-auto mb-2 rounded">
+      <div class="px-4 service-card lg:mt-0">
+        <img src="images/camera_systems.jpg" alt="Camera Systems" class="mx-auto mb-2 rounded" loading="lazy">
         <h3 class="text-xl font-bold mb-2">Camera Systems</h3>
         <p class="service-description">We install indoor and outdoor surveillance systems with HD/4K cameras, DVR or NVR recording, motion alerts, and mobile access. Whether you're securing a small home or a large commercial property, we tailor coverage and placement for maximum visibility and deterrence.</p>
       </div>
-      <div class="px-4 service-card">
-        <img src="images/home_automation.avif" loading="lazy" alt="Home Automation" class="mx-auto mb-2 rounded">
+      <div class="px-4 service-card lg:mt-10">
+        <img src="images/home_automation.avif" alt="Home Automation" class="mx-auto mb-2 rounded" loading="lazy">
         <h3 class="text-xl font-bold mb-2">Home Automation</h3>
         <p class="service-description">From smart lighting and voice-controlled assistants to smart thermostats, locks, and doorbells, we make your home smarter and more efficient. We integrate platforms like Alexa, Google Home, Ring, and Nest for full control and scheduling via your mobile device.</p>
       </div>
@@ -177,281 +88,136 @@
   </div>
 </section>
 
+<!-- Pricing -->
 <section id="pricing" class="py-16 bg-gray-100">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-semibold text-center mb-8">Pricing</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-      <div class="p-6 bg-white rounded-lg shadow-md">
-        <h3 class="text-xl font-bold mb-4">TV Mounting</h3>
-        <ul class="text-gray-700">
-          <li>Average Cost: $331</li>
-          <li>Basic Wall Mount: $199</li>
-          <li>Fireplace Mount: $249</li>
-          <li>Cord Concealment: +$50</li>
-        </ul>
-      </div>
-      <div class="p-6 bg-white rounded-lg shadow-md">
-        <h3 class="text-xl font-bold mb-4">Cat6 Data Cabling</h3>
-        <ul class="text-gray-700">
-          <li>Per Drop: $125–$250</li>
-          <li>First Drop: $150</li>
-          <li>Each Additional: $100</li>
-          <li>Bulk: $90/drop</li>
-        </ul>
-      </div>
-      <div class="p-6 bg-white rounded-lg shadow-md">
-        <h3 class="text-xl font-bold mb-4">Security Camera Installation</h3>
-        <ul class="text-gray-700">
-          <li>Avg Cost: $1,704</li>
-          <li>2-Camera: $899</li>
-          <li>4-Camera: $1,499</li>
-          <li>8-Camera: $2,299</li>
-        </ul>
-      </div>
-      <div class="p-6 bg-white rounded-lg shadow-md">
-        <h3 class="text-xl font-bold mb-4">Home Automation</h3>
-        <ul class="text-gray-700">
-          <li>Thermostat Install: $149</li>
-          <li>Lighting Setup: $199</li>
-          <li>Full Package: from $999</li>
-        </ul>
-      </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 text-center">
+      <button data-modal-target="modalTV" class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg focus:outline-none">
+        <h3 class="text-xl font-bold mb-4">TV Mounting</h3><p>Click for details</p>
+      </button>
+      <button data-modal-target="modalData" class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg focus:outline-none">
+        <h3 class="text-xl font-bold mb-4">Cat6 Data Cabling</h3><p>Click for details</p>
+      </button>
+      <button data-modal-target="modalCam" class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg focus:outline-none">
+        <h3 class="text-xl font-bold mb-4">Security Camera Installation</h3><p>Click for details</p>
+      </button>
+      <button data-modal-target="modalAuto" class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg focus:outline-none">
+        <h3 class="text-xl font-bold mb-4">Home Automation</h3><p>Click for details</p>
+      </button>
+      <button data-modal-target="modalTheatre" class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg focus:outline-none">
+        <h3 class="text-xl font-bold mb-4">Home Theatre Setup</h3><p>Click for details</p>
+      </button>
     </div>
   </div>
 </section>
 
+<!-- About -->
 <section id="about" class="py-16">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-semibold text-center mb-8">About Us</h2>
-    <p class="text-center text-xl">OneCall Tech Solutions is a trusted tech installation company based in Charlotte, serving North and South Carolina. We specialize in smart homes, secure setups, and fast network wiring.</p>
+    <p class="text-center text-xl">OneCall Tech Solutions is a trusted tech installation company based in Charlotte, serving North and South Carolina. We specialize in smart home automation, security camera systems, network wiring, and home theatre installation.</p>
   </div>
 </section>
 
-<footer class="text-center py-4 text-sm text-gray-600">
-  <p>&copy; 2025 OneCall Tech Solutions LLC. Call us: <strong>828-851-6067</strong></p>
-</footer>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const contactModal = document.getElementById('contactModal');
-  const bookingModal = document.getElementById('bookingModal');
-
-  document.getElementById('contactButton').onclick = () => {
-    contactModal.style.display = 'flex';
-  };
-  document.getElementById('bookNowButton').onclick = () => {
-    bookingModal.style.display = 'flex';
-  };
-
-  document.getElementById('closeContactModal').onclick = () => {
-    contactModal.style.display = 'none';
-  };
-  document.getElementById('closeBookingModal').onclick = () => {
-    bookingModal.style.display = 'none';
-  };
-
-  window.onclick = (e) => {
-    if (e.target === contactModal) contactModal.style.display = 'none';
-    if (e.target === bookingModal) bookingModal.style.display = 'none';
-  };
-
-  const track = document.getElementById('carouselTrack');
-  const items = track ? track.children : [];
-  let index = 0;
-  let interval = setInterval(() => moveToNext(), 4000);
-
-  function updateCarousel() {
-    if (!items.length) return;
-    [...items].forEach(item => item.classList.remove('active'));
-    items[index].classList.add('active');
-    track.style.transform = `translateX(-${index * 100}%)`;
-  }
-  function moveToNext() {
-    index = (index + 1) % items.length;
-    updateCarousel();
-  }
-  const carousel = document.getElementById('pricingCarousel');
-  if (carousel) {
-    carousel.addEventListener('mouseenter', () => clearInterval(interval));
-    carousel.addEventListener('mouseleave', () => interval = setInterval(() => moveToNext(), 4000));
-  }
-  for (let i = 0; i < items.length; i++) {
-    items[i].addEventListener('click', () => {
-      index = i;
-      updateCarousel();
-    });
-  }
-  updateCarousel();
-
-  document.getElementById('prevButton').onclick = () => {
-    index = (index - 1 + items.length) % items.length;
-    updateCarousel();
-  };
-
-  document.getElementById('nextButton').onclick = () => {
-    index = (index + 1) % items.length;
-    updateCarousel();
-  };
-
-  // Swipe support
-  let startX = 0;
-  track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-  track.addEventListener('touchend', e => {
-    const endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) {
-      moveToNext();
-    } else if (endX - startX > 50) {
-      index = (index - 1 + items.length) % items.length;
-      updateCarousel();
-    }
-  });
-</script>
-
 <!-- Modals -->
-<div id="contactModal" class="modal">
+<div id="modalTV" class="modal">
   <div class="modal-content">
-    <h2 class="text-2xl font-bold mb-4">Contact Us</h2>
-    <form action="https://formspree.io/f/mrbqpblb" method="POST">
-      <label for="name" class="block mb-2">Name</label>
-      <input type="text" id="name" name="name" class="block w-full mb-4 p-2 rounded border" required>
-      <label for="email" class="block mb-2">Email</label>
-      <input type="email" id="email" name="email" class="block w-full mb-4 p-2 rounded border" required>
-      <label for="message" class="block mb-2">Message</label>
-      <textarea id="message" name="message" rows="4" class="block w-full mb-4 p-2 rounded border" required></textarea>
-      <button type="submit" class="bg-blue-500 text-white p-2 rounded mt-4">Send Message</button>
-    </form>
-    <button id="closeContactModal" class="mt-4 text-blue-500">Close</button>
+    <h2 class="text-2xl font-bold mb-4">TV Mounting</h2>
+    <ul class="list-disc list-inside text-gray-700 mb-4">
+      <li><strong>Option 1: Basic TV Mounting</strong><br>Description: Includes TV mounting on the wall, cable management (basic), and secure attachment to the wall bracket.<br><strong>Price: $99 (Regular price $150)</strong></li>
+      <li><strong>Option 2: Standard TV Mounting with Soundbar Installation</strong><br>Description: Includes TV mounting, cable management, and soundbar installation (mounting and wiring).<br><strong>Price: $179 (Regular price $250)</strong></li>
+      <li><strong>Option 3: Premium TV Mounting with Full Cable Concealment</strong><br>Description: Includes TV mounting, professional cable management (concealment in the wall), and setup of connected devices (e.g., DVD player, game console).<br><strong>Price: $299 (Regular price $400)</strong></li>
+      <li><strong>Option 4: TV Mounting & Smart Home Integration</strong><br>Description: Includes TV mounting, full cable concealment, soundbar setup, and integration with smart home devices (e.g., remote control via smartphone, Alexa/Google Assistant setup).<br><strong>Price: $399 (Regular price $550)</strong></li>
+      <li><em>*Materials Not Included</em></li>
+    </ul>
+    <button onclick="closeModal('modalTV')" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Close</button>
   </div>
 </div>
 
-<div id="bookingModal" class="modal">
+<!-- Other modals unchanged -->
+
+</body>
+</html>
+
+<div id="modalData" class="modal">
   <div class="modal-content">
-    <h2 class="text-2xl font-bold mb-4">Book Your Service</h2>
-    <form action="https://formspree.io/f/xzzrezvy" method="POST">
-      <label for="service" class="block mb-2">Choose a Service</label>
-      <select id="service" name="service" class="block w-full mb-4 p-2 rounded border">
-        <option value="TV Mounting">TV Mounting</option>
-        <option value="Structured Network Wiring">Structured Network Wiring</option>
-        <option value="Camera Systems">Camera Systems</option>
-        <option value="Home Automation">Home Automation</option>
-      </select>
-      <label for="date" class="block mb-2">Select a Date</label>
-      <input type="date" id="date" name="date" class="block w-full mb-4 p-2 rounded border" required>
-      <label for="time" class="block mb-2">Select a Time</label>
-      <input type="time" id="time" name="time" class="block w-full mb-4 p-2 rounded border" required>
-      <button type="submit" class="bg-blue-500 text-white p-2 rounded mt-4">Submit Booking</button>
-    </form>
-    <button id="closeBookingModal" class="mt-4 text-blue-500">Close</button>
+    <h2 class="text-2xl font-bold mb-4">Cat6 Cabling</h2>
+    <ul class="list-disc list-inside text-gray-700 mb-4">
+      <li><strong>Option 1: Basic Cat6 Cabling for One Room</strong><br>Description: Includes the installation of up to 2 Cat6 data cables for internet or network use, along with wall plate installation.<br><strong>Price: $149 (Regular price $200)</strong></li>
+      <li><strong>Option 2: Standard Cat6 Cabling for Home Office/Multiple Rooms</strong><br>Description: Includes the installation of up to 4 Cat6 cables in multiple rooms, including wall plate installation and basic cable routing.<br><strong>Price: $299 (Regular price $450)</strong></li>
+      <li><strong>Option 3: Full Home Data Cabling (Up to 8 Cables)</strong><br>Description: Includes the installation of up to 8 Cat6 cables across multiple rooms in the home or office, with wall plates and cable management.<br><strong>Price: $499 (Regular price $700)</strong></li>
+      <li><strong>Option 4: Complete Network Setup (Cat6 Cabling + Equipment)</strong><br>Description: Includes up to 10 Cat6 cables, installation of a network switch or router (if required), wall plate installation, and basic network configuration.<br><strong>Price: $799 (Regular price $1,000)</strong></li>
+      <li><strong>Option 5: Consultation & Custom Cabling Design</strong><br>Description: Includes an in-home or office consultation to determine the best network layout, followed by a custom cabling plan and pricing based on the design. Equipment and installation are priced separately.<br><strong>Price: $99 for consultation (credit applied toward installation if purchased)</strong></li>
+    </ul>
+    <p class="italic">*Materials Not Included</p>
+    <button onclick="closeModal('modalData')" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Close</button>
+  </div>
+</div></div>
+<div id="modalCam" class="modal">
+  <div class="modal-content">
+    <h2 class="text-2xl font-bold mb-4">Security System Installation</h2>
+    <ul class="list-disc list-inside text-gray-700 mb-4">
+      <li><strong>Option 1: Basic Security System Installation</strong><br>Description: Includes the installation of up to 2 security cameras and basic motion sensors for home monitoring.<br><strong>Price: $249 (Regular price $350)</strong></li>
+      <li><strong>Option 2: Standard Security System Installation</strong><br>Description: Includes the installation of up to 4 security cameras, motion sensors, and door/window sensors with basic monitoring setup.<br><strong>Price: $499 (Regular price $750)</strong></li>
+      <li><strong>Option 3: Advanced Security System Installation</strong><br>Description: Includes up to 8 security cameras, motion sensors, door/window sensors, remote access setup, and integration with smart home devices.<br><strong>Price: $899 (Regular price $1,200)</strong></li>
+      <li><strong>Option 4: Complete Security System Package</strong><br>Description: Full security system installation with up to 12 cameras, motion detectors, door/window sensors, monitoring setup, remote access, and a panic button. Includes a comprehensive smart home integration.<br><strong>Price: $1,299 (Regular price $1,800)</strong></li>
+      <li><strong>Option 5: Security System Consultation & Custom Setup</strong><br>Description: Includes an in-home consultation, personalized security design, and recommendations for cameras, sensors, and monitoring solutions. Equipment and installation sold separately.<br><strong>Price: $99 for consultation (credit applied toward installation if purchased)</strong></li>
+    </ul>
+    <p class="italic">*Materials Not Included</p>
+    <button onclick="closeModal('modalCam')" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Close</button>
+  </div>
+</div>
+<div id="modalAuto" class="modal">
+  <div class="modal-content">
+    <h2 class="text-2xl font-bold mb-4">Home Automation</h2>
+    <ul class="list-disc list-inside text-gray-700 mb-4">
+      <li><strong>Option 1: Basic Home Automation Setup</strong><br>Description: Includes the installation and setup of smart lighting, smart plugs, and basic control through a smartphone or voice assistant (Alexa/Google Assistant).<br><strong>Price: $249 (Regular price $350)</strong></li>
+      <li><strong>Option 2: Smart Home Essentials Package</strong><br>Description: Includes smart lighting, smart thermostats, smart plugs, and the setup of a smart home hub for centralized control.<br><strong>Price: $399 (Regular price $550)</strong></li>
+      <li><strong>Option 3: Complete Home Automation System</strong><br>Description: Full home automation with smart lighting, smart thermostats, smart locks, security cameras, and integration with Alexa/Google Assistant for voice control. Includes basic setup and customization of scenes or automation routines.<br><strong>Price: $799 (Regular price $1,200)</strong></li>
+      <li><strong>Option 4: Premium Smart Home Integration</strong><br>Description: Includes advanced smart home features such as motorized blinds, multi-room audio system integration, smart security system setup, and fully customizable automation for lights, thermostat, security cameras, and locks. Integration with your home network for seamless control.<br><strong>Price: $1,299 (Regular price $1,800)</strong></li>
+      <li><strong>Option 5: Smart Home Consultation & Design</strong><br>Description: Includes an in-home consultation to evaluate your current setup and provide a custom home automation design tailored to your needs. Equipment and installation sold separately.<br><strong>Price: $99 for consultation (credit applied toward installation if purchased)</strong></li>
+    </ul>
+    <p class="italic">*Materials Not Included</p>
+    <button onclick="closeModal('modalAuto')" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Close</button>
+  </div>
+</div>
+<div id="modalTheatre" class="modal">
+  <div class="modal-content">
+    <h2 class="text-2xl font-bold mb-4">Home Theatre Setup</h2>
+    <ul class="list-disc list-inside text-gray-700 mb-4">
+      <li><strong>Option 1: Basic Home Theatre Setup</strong><br>Description: Includes TV mounting, basic speaker setup, and connection to existing home entertainment devices.<br><strong>Price: $199 (Regular price $300)</strong></li>
+      <li><strong>Option 2: Premium Home Theatre Setup</strong><br>Description: Includes TV mounting, full surround sound system installation, wiring, and connection to smart home devices.<br><strong>Price: $399 (Regular price $600)</strong></li>
+      <li><strong>Option 3: Complete Home Theatre Experience</strong><br>Description: Includes all features from the Premium setup, along with custom placement, calibration, and additional equipment like streaming devices or universal remotes.<br><strong>Price: $599 (Regular price $900)</strong></li>
+      <li><strong>Option 4: Home Theatre Consultation & Setup</strong><br>Description: Includes an in-home consultation, personalized design, and full home theatre system setup (equipment not included).<br><strong>Price: $99 for consultation (credit applied toward installation if purchased)</strong></li>
+    </ul>
+    <p class="italic">*Materials Not Included</p>
+    <button onclick="closeModal('modalTheatre')" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Close</button>
   </div>
 </div>
 
-<script>
-  const track = document.getElementById('carouselTrack');
-  const items = track ? [...track.children] : [];
-  const prevButton = document.getElementById('prevButton');
-  const nextButton = document.getElementById('nextButton');
-  let index = 0;
-  let interval;
-
-  function updateCarousel() {
-    items.forEach(item => item.classList.remove('active'));
-    if (items[index]) items[index].classList.add('active');
-    track.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-  function moveToNext() {
-    index = (index + 1) % items.length;
-    updateCarousel();
-  }
-
-  function moveToPrev() {
-    index = (index - 1 + items.length) % items.length;
-    updateCarousel();
-  }
-
-  if (prevButton) prevButton.addEventListener('click', moveToPrev);
-  if (nextButton) nextButton.addEventListener('click', moveToNext);
-
-  if (track) {
-    let startX = 0;
-    track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-    track.addEventListener('touchend', e => {
-      const endX = e.changedTouches[0].clientX;
-      if (startX - endX > 50) moveToNext();
-      else if (endX - startX > 50) moveToPrev();
-    });
-  }
-
-  interval = setInterval(moveToNext, 4000);
-
-  const carousel = document.getElementById('pricingCarousel');
-  if (carousel) {
-    carousel.addEventListener('mouseenter', () => clearInterval(interval));
-    carousel.addEventListener('mouseleave', () => interval = setInterval(moveToNext, 4000));
-  }
-
-  updateCarousel();
-});
-</script>
+<!-- Contact & Booking Modals -->
+<div id="contactModal" class="modal"><div class="modal-content"><h2 class="text-2xl font-bold mb-4">Contact Us</h2><form action="https://formspree.io/f/mrbqpblb" method="POST"><label for="name" class="block mb-2">Name</label><input type="text" id="name" name="name" class="block w-full mb-4 p-2 rounded border" required><label for="email" class="block mb-2">Email</label><input type="email" id="email" name="email" class="block w-full mb-4 p-2 rounded border" required><label for="message" class="block mb-2">Message</label><textarea id="message" name="message" rows="4" class="block w-full mb-4 p-2 rounded border" required></textarea><button type="submit" class="bg-blue-500 text-white p-2 rounded mt-4">Send Message</button></form><button id="closeContactModal" onclick="closeModal('contactModal')" class="mt-4 text-blue-500">Close</button></div></div>
+<div id="bookingModal" class="modal"><div class="modal-content"><h2 class="text-2xl font-bold mb-4">Book Your Service</h2><form action="https://formspree.io/f/xzzrezvy" method="POST"><label for="service" class="block mb-2">Choose a Service</label><select id="service" name="service" class="block w-full mb-4 p-2 rounded border">
+        <option>TV Mounting</option>
+        <option>Cat6 Data Cabling</option>
+        <option>Security System Installation</option>
+        <option>Home Automation</option>
+        <option>Home Theatre Setup</option>
+      </select><label for="date" class="block mb-2">Select a Date</label><input type="date" id="date" name="date" class="block w-full mb-4 p-2 rounded border" required><label for="time" class="block mb-2">Select a Time</label><input type="time" id="time" name="time" class="block w-full mb-4 p-2 rounded border" required><button type="submit" class="bg-blue-500 text-white p-2 rounded mt-4">Submit Booking</button></form><button id="closeBookingModal" onclick="closeModal('bookingModal')" class="mt-4 text-blue-500">Close</button></div></div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const contactModal = document.getElementById('contactModal');
-  const bookingModal = document.getElementById('bookingModal');
+function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+document.querySelectorAll('[data-modal-target]').forEach(btn => btn.addEventListener('click', () => document.getElementById(btn.getAttribute('data-modal-target')).style.display = 'flex'));window.addEventListener('click', e => { if (e.target.classList.contains('modal')) closeModal(e.target.id); });
+const contactModal = document.getElementById('contactModal'), bookingModal = document.getElementById('bookingModal');
+document.getElementById('contactButton').addEventListener('click', ()=> contactModal.style.display = 'flex');
+document.getElementById('bookNowButton').addEventListener('click', ()=> bookingModal.style.display = 'flex');
+document.getElementById('closeContactModal').addEventListener('click', ()=> closeModal('contactModal'));
+document.getElementById('closeBookingModal').addEventListener('click', ()=> closeModal('bookingModal'));
 
-  const contactButton = document.getElementById('contactButton');
-  const bookNowButton = document.getElementById('bookNowButton');
-  const closeContactModal = document.getElementById('closeContactModal');
-  const closeBookingModal = document.getElementById('closeBookingModal');
-
-  if (contactButton && contactModal) {
-    contactButton.addEventListener('click', () => {
-      contactModal.style.display = 'flex';
-    });
-  }
-
-  if (bookNowButton && bookingModal) {
-    bookNowButton.addEventListener('click', () => {
-      bookingModal.style.display = 'flex';
-    });
-  }
-
-  if (closeContactModal && contactModal) {
-    closeContactModal.addEventListener('click', () => {
-      contactModal.style.display = 'none';
-    });
-  }
-
-  if (closeBookingModal && bookingModal) {
-    closeBookingModal.addEventListener('click', () => {
-      bookingModal.style.display = 'none';
-    });
-  }
-
-  window.addEventListener('click', (e) => {
-    if (e.target === contactModal) contactModal.style.display = 'none';
-    if (e.target === bookingModal) bookingModal.style.display = 'none';
-  });
-});
+document.getElementById('menuToggle').addEventListener('click', ()=> { const m = document.getElementById('mobileMenu'); m.classList.toggle('hidden'); m.classList.toggle('flex'); });
+document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', ()=> { const m = document.getElementById('mobileMenu'); m.classList.add('hidden'); m.classList.remove('flex'); }));
 </script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const toggle = document.getElementById('menuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const navLinks = mobileMenu.querySelectorAll('a');
 
-  toggle.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-    mobileMenu.classList.toggle('flex');
-  });
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
-      mobileMenu.classList.remove('flex');
-    });
-  });
-});
-</script>
 </body>
 </html>
